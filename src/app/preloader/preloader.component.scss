@@ -1,0 +1,25 @@
+// preloader
+.preloader {
+  display: flex;
+  justify-content: center;
+  background: #ffffff82;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  position: absolute;
+  // display: none;
+}
+
+.preloader.dark {
+  background: #103c4c96;
+}
+
+.preloader__item {
+  font-size: 18px;
+  color: #fff;
+  z-index: 1500;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #0c2f3cd6;
+  align-self: center;
+}

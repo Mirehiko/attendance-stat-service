@@ -1,0 +1,18 @@
+<div class="searchBox">
+    <div class="inputGroup">
+        <div class="inputBox">
+            <input class="inputBox__input" [(ngModel)]="searchString" (keyup)="search()">
+        </div>
+        <button class="inputBtn"><i class="fas fa-search"></i></button>
+    </div>
+    <ul class="resultBox visible" *ngIf="searchString">
+        <div *ngIf="searchResults.length; then results else emptyMessage"></div>
+        <ng-template #results>
+            <li class="sbrb__item" *ngFor="let author of searchResults" (click)="chooseAuthor(author.id)">
+                {{author.name}}</li>
+        </ng-template>
+        <ng-template #emptyMessage>
+            <li class="sbrb__item default">Совпадений не найдено</li>
+        </ng-template>
+    </ul>
+</div>

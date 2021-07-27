@@ -1,0 +1,23 @@
+<div class="st-content">
+  <app-date-nav #dateNav></app-date-nav>
+  <app-main-nav #sideMenu [activeView]="activeView" (viewChange)="setView($event)">
+  </app-main-nav>
+  <div class="st-main">
+    <app-monitor [commonStat]="activeView == 'common'"></app-monitor>
+
+    <app-mainbox [isActive]="activeView == 'homepage'"></app-mainbox>
+    <app-authorbox #authorsView [isActive]="activeView == 'authorspage'"></app-authorbox>
+    <app-statbox [isActive]="activeView == 'common'"></app-statbox>
+    <app-metrix [isActive]="activeView == 'metrix'"></app-metrix>
+  </div>
+</div>
+<div class="st-shadow"></div>
+
+<div class="st_form st-logout">
+  <a href="/logout" class="st-input_icon">
+    <button class="st-ii_icon">
+      <i class="fas fa-sign-out-alt"></i>
+    </button>
+    <div class="st-ii_input"><input id="logout" type="text" name="logout" disabled="" value="Выход"></div>
+  </a>
+</div>

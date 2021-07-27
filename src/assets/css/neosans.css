@@ -1,0 +1,14 @@
+@font-face {
+  font-family: NeoSansCyr-Regular;
+  src: url(../fonts/NeoSansCyr-Regular.woff);
+}
+
+@font-face {
+  font-family: NeoSansCyr-Medium;
+  src: url(../fonts/NeoSansCyr-Medium.woff);
+}
+
+@font-face {
+  font-family: NeoSansCyr-Italic;
+  src: url(../fonts/NeoSansCyr-Italic.woff);
+}

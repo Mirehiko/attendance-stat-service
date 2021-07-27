@@ -1,0 +1,88 @@
+.monitorHeadIcon {
+  padding-right: 5px;
+}
+
+.monitorHead {
+  margin-bottom: 5px;
+  font-size: 16px;
+  padding: 0 10px;
+  color: #70a7bb;
+  height: 30px;
+
+  &-btn {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    position: relative;
+
+    .btnText {
+      padding: 0 5px 0 0;
+    }
+  }
+}
+
+/* Compare */
+.compareRow {
+  background: #175167;
+  color: #fff;
+  height: 30px;
+  vertical-align: top;
+  padding: 0 10px;
+  cursor: default;
+
+  padding: 0;
+  display: table-row;
+}
+
+.compareRow:hover {
+  background: #184556;
+}
+
+.compareRow__period,
+.compareRow__value,
+.compareRow__btnClose,
+.compare__item {
+  /* display: inline-block; */
+  display: table-cell;
+  padding: 0 10px;
+  height: 100%;
+  vertical-align: middle;
+  line-height: 30px;
+  background: transparent;
+}
+
+.compareRow__value {
+  padding: 0 10px;
+  color: #fea500;
+  font-weight: bold;
+  border-left: 1px solid;
+  margin-left: 10px;
+  font-size: 20px;
+  text-align: right;
+}
+
+.compareRow__period {
+  font-size: 14px;
+}
+
+.compareRow__btnClose {
+  color: #fd605e;
+  border: none;
+  height: 30px;
+  width: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.compareRow__btnClose:hover {
+  text-shadow: 0px 0px 3px #fd605e;
+  transform: scale(1.05);
+}
+
+#noCompare {
+  line-height: 30px;
+  color: #fff;
+  display: block;
+}

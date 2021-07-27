@@ -1,0 +1,32 @@
+<div id="statbox" class="st-results" state="empty" *ngIf="isActive">
+	<div class="st-panel st-light"></div>
+	<div id="common_publications">
+		<div class="prebox">
+			<app-preloader *ngIf="loadingPub"></app-preloader>
+			<div id="listContainer"></div>
+			<div id="articlelist_panel" class="st-panel st-light">
+				<div id="materials" *ngIf="publications; then thenBlock else elseBlock"></div>
+				<ng-template #thenBlock>
+					<a *ngFor="let publication of publications.results" class="publication" href="{{publication.url}}"
+						target="_blank">
+						<div class="publication__views" title="{{publication.total}}">{{publication.total}}</div>
+						<div class="publiction__info">
+							<div class="publiction__title" title="{{publication.title}}">{{publication.title}}</div>
+							<div class="publication__extra">
+								<span class="publiction__date">{{publication.pubdate}}</span>
+								<span class="publiction__author" title="{{publication.author}}">{{publication.author}}</span>
+							</div>
+						</div>
+						<span class="publication__rubric" *ngIf="publication.rubric">{{publication.rubric}}</span>
+					</a>
+				</ng-template>
+				<ng-template #elseBlock>
+					<div class="noresults">Нет результатов</div>
+				</ng-template>
+			</div>
+		</div>
+
+		<app-pagination *ngIf="publications" [pageInfo]="{page:null, prev:publications.previous, next:publications.next}"
+			(pageChange)="setPublPage($event)"></app-pagination>
+	</div>
+</div>

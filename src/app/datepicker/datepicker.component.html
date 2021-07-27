@@ -1,0 +1,35 @@
+<div [ngSwitch]="params.view">
+    <!-- YEAR -->
+    <mat-form-field *ngSwitchCase="'year'">
+        <!-- <mat-label>Choose a date</mat-label> -->
+
+        <!-- startView="multi-year" -->
+        <!-- (yearSelected)="chosenYearHandler($event)" -->
+        <!-- (monthSelected)="chosenMonthHandler($event, dp)" -->
+
+        <input matInput [matDatepicker]="picker" (dateInput)="onDateChange($event)" placeholder="{{params.placeholder}}"
+            [max]="maxDate" [min]="minDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <!-- <mat-datepicker #picker startView="multi-year" (yearSelected)="chosenYearHandler($event, picker)"> -->
+        <mat-datepicker #picker startView="multi-year">
+        </mat-datepicker>
+    </mat-form-field>
+
+    <!-- MONTH -->
+    <mat-form-field *ngSwitchCase="'month'">
+        <input matInput [matDatepicker]="picker" (dateInput)="onDateChange($event)" placeholder="{{params.placeholder}}"
+            [max]="maxDate" [min]="minDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <!-- <mat-datepicker #picker startView="multi-month" (yearSelected)="chosenYearHandler($event, picker)"> -->
+        <mat-datepicker #picker startView="year">
+        </mat-datepicker>
+    </mat-form-field>
+
+    <!-- DEFAULT -->
+    <mat-form-field *ngSwitchDefault>
+        <input matInput [matDatepicker]="picker" (dateInput)="onDateChange($event)" placeholder="{{params.placeholder}}"
+            [max]="maxDate" [min]="minDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</div>

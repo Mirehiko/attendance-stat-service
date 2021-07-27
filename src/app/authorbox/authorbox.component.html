@@ -1,0 +1,36 @@
+<div id="authorbox" class="st-results st-panel st-dark" state="authors" *ngIf="isActive">
+	<div class="st-tabMenu">
+		<button class="st-tabMenu__tab material-type" [class.active]="activeTab === 'common'"
+			(click)="chooseTab('common')">Рейтинг авторов</button>
+		<button class="st-tabMenu__tab material-type" [class.active]="activeTab === 'average'"
+			(click)="chooseTab('average')">Средние значения</button>
+	</div>
+
+	<div id="common_authors" *ngIf="activeTab === 'common'">
+		<div class="prebox">
+			<app-preloader *ngIf="loadingAuthors"></app-preloader>
+
+			<div class="st-panel st-light">
+				<div class="st-table authorlist">
+
+					<div id="authorsResults" class="table" *ngIf="authors; then thenBlock else elseBlock"></div>
+					<ng-template #thenBlock>
+						<div class="tableRow" *ngFor="let author of authors.results" id="{{author.aid}}">
+							<div class="tableRow__item tableRow-position">{{author.item}}</div>
+							<div class="tableRow__item tableRow-author">{{author.author}}</div>
+							<div class="tableRow__item tableRow-total">{{author.total}}</div>
+						</div>
+					</ng-template>
+					<ng-template #elseBlock>
+						<div class="noresults">Нет результатов</div>
+					</ng-template>
+				</div>
+			</div>
+			<app-pagination *ngIf="authors" [pageInfo]="{page:null, prev:authors.previous, next:authors.next}"
+				(pageChange)="setAuthorPage($event)"></app-pagination>
+		</div>
+	</div>
+
+	<app-author-average #averageTab *ngIf="activeTab === 'average'"></app-author-average>
+
+</div>

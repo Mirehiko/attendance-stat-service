@@ -1,0 +1,24 @@
+<div id="sourses" class="expertMode st-diagrambox">
+	<div class="inline-container">
+		<div id="countryContainer" class="st-graphicBox st-inline-container__item">
+			<canvas id="countryGraphic" width="400" height="400"></canvas>
+			<app-pagination class="graf" *ngIf="countries"
+				[pageInfo]="{page:null, prev: countries.previous, next: countries.next}"
+				(pageChange)="setDataPage('countries', $event)"></app-pagination>
+		</div>
+		<div id="citiesContainer" class="st-graphicBox st-inline-container__item">
+			<canvas id="cityGraphic" width="400" height="400"></canvas>
+			<app-pagination class="graf" *ngIf="cities"
+				[pageInfo]="{page:null, prev: cities.previous, next: cities.next}"
+				(pageChange)="setDataPage('cities', $event)"></app-pagination>
+		</div>
+		<div id="peopleContainer" class="st-graphicBox st-inline-container__item">
+			<canvas id="peopleGraphic" width="400" height="400"></canvas>
+			<!-- <app-pagination *ngIf="true"></app-pagination> -->
+		</div>
+		<div id="sourcesContainer" class="st-graphicBox st-inline-container__item">
+			<canvas id="sourcesGraphic" width="400" height="200"></canvas>
+			<!-- <app-pagination *ngIf="true"></app-pagination> -->
+		</div>
+	</div>
+</div>

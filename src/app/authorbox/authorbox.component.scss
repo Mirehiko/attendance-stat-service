@@ -1,0 +1,37 @@
+.tableRow {
+  color: #1e5d86;
+  border-bottom: 1px solid #e3eff3;
+  display: flex;
+  font-size: 16px;
+  min-height: 40px;
+
+  &:nth-child(2n + 1) {
+    background-color: #d0dee440;
+  }
+  &:nth-child(2n) {
+    background-color: #fff;
+  }
+}
+.tableRow__item {
+  padding: 0 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tableRow-position {
+  font-size: 10px;
+  color: #222;
+  font-weight: 700;
+  width: 100%;
+  max-width: 30px;
+  text-align: right;
+}
+.tableRow-author {
+  text-transform: capitalize;
+  width: 100%;
+  max-width: 300px;
+}
+
+.tableRow-total {
+  font-weight: bold;
+}

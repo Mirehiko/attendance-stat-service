@@ -1,0 +1,29 @@
+<div id="average_authors">
+	<div class="prebox">
+		<app-preloader [darkTheme]="true" *ngIf="loadingAuthor"></app-preloader>
+
+		<div id="authorslist_panel" class="">
+			<app-search-authors [authorList]="authorStorage" (searchData)="searchCallback($event)">
+			</app-search-authors>
+			<div class="item-co">
+				<div id="authorList" *ngIf="authors; then thenBlock else elseBlock"></div>
+				<ng-template #thenBlock>
+					<label *ngFor="let author of authors" for="author_{{author.id}}"
+						class="checkBox checkBox-list checkBox-author"
+						[class.checkBox-active]="author.id == activeAuthorID" (change)="setAuthor(author.id)">
+						<input type="checkbox" id="author_{{author.id}}" [checked]="author.id == activeAuthorID">
+						<span class="checkBox__title">{{author.name}}</span>
+					</label>
+				</ng-template>
+				<ng-template #elseBlock>
+					<div class="noresults">Нет результатов</div>
+				</ng-template>
+
+				<app-pagination *ngIf="authors" [pageInfo]="pagination" (pageChange)="setAuthorPage($event)">
+				</app-pagination>
+			</div>
+		</div>
+
+		<app-author-details #details [author]="selectedAuthor"></app-author-details>
+	</div>
+</div>

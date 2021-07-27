@@ -1,0 +1,130 @@
+<div id="authorInfo">
+	<div class="item-co">
+		<div class="st-monitor-group">
+			<!-- Всего просмотров -->
+			<p id="selectedAuthor" class="st-monitor-group__title">Всего просмотров по автору <i
+					class="far fa-question-circle"
+					title="Просмотры по автору за всё время работы сервиса(3 Февраля 2017г)."></i>
+			</p>
+			<div class="st-monitor -average-">
+				<p class="st-monitor__title"><i class="fas fa-eye"></i> Просмотры</p>
+
+				<div class="st-monitor__value st-success">
+					<span id="authorTotal" class="averageValue">{{author ? author.total : 0}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="st-monitor-group">
+			<!-- Средние значения -->
+			<p id="selectedAuthor" class="st-monitor-group__title">Среднее количество просмотров на материал
+			</p>
+			<div class="st-monitor -average- st-ddContainer tm">
+				<!-- title -->
+				<button #yearPickerCtrl id="rangeYear" class="monitorHead monitorHead-btn"
+					(click)="changePickerView('yearPicker')">
+					<i class="fas fa-eye monitorHeadIcon"></i>
+					<span class="btnText averageText">
+						{{authorData.averageYear.text || 'Год'}}
+					</span>
+					<i class="fas fa-caret-down dropIcon"></i>
+				</button>
+
+				<!-- body -->
+				<div #yearPicker class="st-ddContainer__content opened" *ngIf="activePicker == 'yearPicker'">
+					<app-datepicker [params]="yearPickerParams" (dateChange)="changePeriod('year', $event)">
+					</app-datepicker>
+					<button id="confirmDateRange2" class="st-btn"
+						(click)="setPeriod('averageYear', 'newValue')">Применить</button>
+				</div>
+
+				<div class="st-monitor__value st-success">
+					<span id="rangeYear" class="averageValue">{{authorData.averageYear.value.total || 0}}</span>
+
+					<div class="toCompareBox" *ngIf="authorData.averageYear.value">
+						<button class="toCompareBox__btn" compare='year' title="Добавить к сравнению"
+							(click)="addPeriod('averageYear')"><i class="fas fa-plus"></i></button>
+					</div>
+				</div>
+			</div>
+
+			<div class="st-monitor -average- st-ddContainer tm">
+				<!-- title -->
+				<button #monthPickerCtrl id="rangeMonth" class="monitorHead monitorHead-btn"
+					(click)="changePickerView('monthPicker')">
+					<i class="fas fa-eye monitorHeadIcon"></i>
+					<span class="btnText averageText">
+						{{authorData.averageMonth.text || 'Месяц'}}
+					</span>
+					<i class="fas fa-caret-down dropIcon"></i>
+				</button>
+
+				<div #monthPicker class="st-ddContainer__content opened" *ngIf="activePicker == 'monthPicker'">
+					<app-datepicker [params]="monthPickerParams" (dateChange)="changePeriod('month', $event)">
+					</app-datepicker>
+					<button id="confirmDateRange1" class="st-btn"
+						(click)="setPeriod('averageMonth', 'newValue')">Применить</button>
+				</div>
+
+				<div class="st-monitor__value st-success">
+					<span id="rangeMonth" class="averageValue">{{authorData.averageMonth.value.total || 0}}</span>
+
+					<div class="toCompareBox" *ngIf="authorData.averageMonth.value">
+						<button class="toCompareBox__btn" compare='month' title="Добавить к сравнению"
+							(click)="addPeriod('averageMonth')"><i class="fas fa-plus"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="st-monitor-group">
+			<!-- Всего просмотров -->
+			<p id="selectedAuthor" class="st-monitor-group__title">Среднее значение за период <i
+					class="far fa-question-circle"
+					title="Если установлен диапазон дат, то цифра отражает среднее число просмотров в день за указанный период. Если указан только 1 день, то цифра отражает количество просмотров за выбранный день."></i>
+			</p>
+			<div class="st-monitor -average- st-ddContainer tm">
+				<!-- title -->
+				<button #periodPickerCtrl id="rangeText" class="monitorHead monitorHead-btn"
+					(click)="changePickerView('periodPicker')">
+					<i class="fas fa-eye monitorHeadIcon"></i>
+					<span class="btnText averageText">
+						{{authorData.averagePeriod.text || 'Период'}}
+					</span>
+					<i class="fas fa-caret-down dropIcon"></i>
+				</button>
+
+				<div #periodPicker class="st-ddContainer__content opened" *ngIf="activePicker == 'periodPicker'">
+					<app-datepicker [params]="periodStartPickerParams" (dateChange)="setAveragePeriod('start', $event)">
+					</app-datepicker>
+					<app-datepicker [params]="periodEndPickerParams" (dateChange)="setAveragePeriod('end', $event)">
+					</app-datepicker>
+					<button id="confirmDateRange3" class="st-btn"
+						(click)="setPeriod('averagePeriod', 'newValue')">Применить</button>
+				</div>
+
+				<div class="st-monitor__value st-success">
+					<span id="rangePeriod" class="averageValue">{{authorData.averagePeriod.value.total || 0}}</span>
+
+					<div class="toCompareBox" *ngIf="authorData.averagePeriod.value">
+						<button class="toCompareBox__btn" compare='period' title="Добавить к сравнению"
+							(click)="addPeriod('averagePeriod')">
+							<i class="fas fa-plus"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="authorResultRows" *ngIf="periodsForCompare.length">
+			<div class="compareRow" *ngFor="let period of periodsForCompare; index as periodIndex">
+				<span class="compareRow__period">{{period.period}}</span>
+				<span class="compareRow__value">{{period.total}}</span>
+				<div class="compare__item">
+					<button class="compareRow__btnClose rmCompare-js" (click)="removePeriod(periodIndex)">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

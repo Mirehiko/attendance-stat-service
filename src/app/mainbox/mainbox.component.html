@@ -1,0 +1,98 @@
+<div id="mainbox" class="st-results st-active" *ngIf="isActive">
+
+  <div id="mobileList" class="st-panel st-panelStatic">
+    <div id="mobileRubrics">
+      <div class="st-listInput">
+        <button class="st-listInput__btn" (click)="toggleValue('isRubricsOpened')">{{ activeRubric }}</button>
+        <div class="st-listInput__box" [class.opened]="isRubricsOpened">
+          <li *ngFor="let rubric of rubrics" id="mrubric_{{rubric.key}}" class="st-listInput__option"
+            [class.selected]="rubric.isActive" (click)="setRubric(rubric.key)" (click)="toggleValue('isRubricsOpened')">
+            {{rubric.value}}
+          </li>
+        </div>
+        <button class="st-listInput__reset" *ngIf="activeRubric != 'Все рубрики'" (click)="setRubric()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-inline-container">
+    <div class="st-half" id="publBlock">
+      <div id="publications" class="st-panel st-light">
+        <div class="st-tabMenu">
+          <button class="st-tabMenu__tab material-type" [class.active]="activeTab === 'news'"
+            (click)="setType('news')">Новости</button>
+          <button class="st-tabMenu__tab material-type" [class.active]="activeTab === 'articles'"
+            (click)="setType('articles')">Статьи</button>
+          <button class="st-tabMenu__tab material-type" [class.active]="activeTab === 'releases'"
+            (click)="setType('releases')">Пресс-релизы</button>
+          <button class="st-tabMenu__tab material-type" [class.active]="activeTab === 'all'"
+            (click)="setType('all')">Все</button>
+        </div>
+
+        <div class="prebox">
+          <app-preloader *ngIf="loadingPub"></app-preloader>
+
+          <div id="mainPuplications">
+            <div id="materials" *ngIf="publications; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <a *ngFor="let publication of publications.results" class="publication" href="{{publication.url}}"
+                target="_blank">
+                <div class="publication__views" title="{{publication.total}}">{{publication.total}}</div>
+                <div class="publiction__info">
+                  <div class="publiction__title" title="{{publication.title}}">{{publication.title}}</div>
+                  <div class="publication__extra">
+                    <span class="publiction__date">{{publication.pubdate}}</span>
+                    <span class="publiction__author" title="{{publication.author}}">{{publication.author}}</span>
+                  </div>
+                </div>
+                <span class="publication__rubric" *ngIf="publication.rubric">{{publication.rubric}}</span>
+              </a>
+            </ng-template>
+            <ng-template #elseBlock>
+              <span class="st-noresults">Данные для отображения отсутствуют <i class="far fa-frown"></i></span>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <app-pagination *ngIf="publications" [pageInfo]="{page:null, prev:publications.previous, next:publications.next}"
+        (pageChange)="setPublPage($event)"></app-pagination>
+    </div>
+
+    <div class="st-half" id="authorBlock">
+      <div id="authors" class="st-panel st-dark">
+        <h2 class="st-panel_title">Авторы</h2>
+        <div class="prebox">
+          <app-preloader [darkTheme]="true" *ngIf="loadingAuthors"></app-preloader>
+
+          <div id="shotAuthorsList" class="st-checkBlock" *ngIf="authors; then thenAuthor else elseAuthor"></div>
+
+          <ng-template #thenAuthor>
+            <label *ngFor="let author of authors.results" for="author_{{author.aid}}"
+              class="checkBox checkBox-list checkBox-author" [class.checkBox-active]="author.isActive"
+              (change)="setAuthor(author.aid)">
+              <input type="checkbox" id="author_{{author.aid}}" [checked]="author.isActive">
+              <span class="checkBox__title">{{author.author}}</span>
+              <span class="authorCount">{{author.total}}</span>
+            </label>
+          </ng-template>
+          <ng-template #elseAuthor>
+            <span class="st-noresults">Данные для отображения отсутствуют <i class="far fa-frown"></i></span>
+          </ng-template>
+        </div>
+      </div>
+
+      <div id="" class="st-panel st-dark">
+        <div id="rubricCheck" class="st-checkBlock">
+          <label *ngFor="let rubric of rubrics" for="rubric_{{rubric.key}}" class="checkBox checkBox-list"
+            [class.checkBox-active]="rubric.isActive" (change)="setRubric(rubric.key)">
+            <input type="checkbox" id="rubric_{{rubric.key}}" [checked]="rubric.isActive">
+            <span class="checkBox__title">{{rubric.value}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<ul class="st-menu st-tablet_menu">
+	<li class="st-menu__item">
+		<button #sideToggler type="button" class="st-ddContainer__btn" (click)="toggleSideMenu()">
+			<i class="fas fa-bars"></i> <span id="activeTab">{{ activeView }}</span>
+		</button>
+	</li>
+</ul>
+
+<ul class="st-menu st-head_menu">
+	<li class="st-menu__item" data-menu="dataChanger" [class.active]="activeTab==='yeasterday'"
+		(click)="setPeriod('yeasterday')">
+		<a href="#" class="st-dateChanger-js" data-period="1" data-target="dataChanger"
+			title="За вчера"><span>Вчера</span>
+		</a>
+	</li>
+	<li class="st-menu__item" data-menu="dataChanger" [class.active]="activeTab==='today'" (click)="setPeriod('today')">
+		<a href="#" class="st-dateChanger-js" data-period="0" data-target="dataChanger"
+			title="За сегодня"><span>Сегодня</span>
+		</a>
+	</li>
+
+	<li class="st-menu__item devider">
+		<a href="#" class="">
+			<span></span>
+		</a>
+	</li>
+
+	<li class="st-menu__item st-ddContainer tm" [class.active]="activeTab==='period'">
+		<button #globDateCtrl type="button" class="st-ddContainer__btn" (click)="changePickerView()">
+			<span id="selectedDay">{{periodText}}</span> <i class="fas fa-caret-down"></i>
+		</button>
+		<div #globDate class="st-ddContainer__content opened" *ngIf="showPickers">
+			<div>
+				<app-datepicker [params]="periodStartPickerParams" (dateChange)="changePeriod('start', $event)">
+				</app-datepicker>
+			</div>
+			<div>
+				<app-datepicker [params]="periodEndPickerParams" (dateChange)="changePeriod('end', $event)">
+				</app-datepicker>
+			</div>
+			<button id="confirmDateRange" class="st-btn" (click)="setPeriod('period')">Применить</button>
+		</div>
+	</li>
+</ul>

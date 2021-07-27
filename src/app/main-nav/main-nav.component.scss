@@ -1,0 +1,28 @@
+.st-menu-item {
+  width: 100%;
+  border: none;
+  display: block;
+  height: 100%;
+  padding: 0 10px 0 20px;
+  color: #adc3cc;
+  text-decoration: none;
+  border-right: 3px solid #0a2731;
+  background: #0c2f3c;
+  transition: all 0.2s;
+  text-align: left;
+  font-size: 16px;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+    border-color: #71bad4;
+    background: #09222b;
+    color: #fff;
+  }
+
+  &.active {
+    background: #175167;
+    color: #fff;
+    border-color: #7ad3f2;
+  }
+}

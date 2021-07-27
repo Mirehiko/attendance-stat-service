@@ -1,0 +1,27 @@
+<div id="side" class="st-side" [class.opened]="isSideOpened" #sideMenu>
+    <div class="st-logo_box"></div>
+    <div class="st-side_menu">
+        <nav class="st-vmenu st-mside">
+            <button type="button" (click)="setView('homepage')" class="st-menu-item"
+                [class.active]="activeView == 'homepage'">
+                <i class="fas fa-history"></i>
+                Итоги
+            </button>
+            <button type="button" (click)="setView('authorspage')" class="st-menu-item"
+                [class.active]="activeView == 'authorspage'">
+                <i class="far fa-id-badge"></i>
+                Авторы
+            </button>
+            <button type="button" (click)="setView('common')" class="st-menu-item"
+                [class.active]="activeView == 'common'">
+                <i class="fas fa-chart-bar"></i>
+                Общая статистика
+            </button>
+            <button type="button" (click)="setView('metrix')" class="st-menu-item"
+                [class.active]="activeView == 'metrix'">
+                <i class="fas fa-table"></i>
+                Сравнение данных
+            </button>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="st-monitorBox">
+	<!-- Десктопная версия -->
+	<div class="st-diagrambox">
+		<div class="st-row">
+			<div class="st-row__item">
+				<div class="st-monitor-group">
+					<p id="monitorToday" class="st-monitor-group__title">За сегодня</p>
+					<ng-container *ngTemplateOutlet="todayViewTpl"></ng-container>
+					<ng-container *ngTemplateOutlet="todayVisitTpl"></ng-container>
+					<ng-container *ngTemplateOutlet="depthTpl"></ng-container>
+				</div>
+			</div>
+
+			<div class="st-row__item" *ngIf="commonStat">
+				<div class="st-monitor-group">
+					<p class="st-monitor-group__title">За всё время</p>
+					<div class="st-monitor">
+						<p class="st-monitor__title"><i class="fas fa-eye"></i> Просмотры</p>
+						<div *ngIf="totals; then thenAllViews else elseAllViews"></div>
+					</div>
+					<div class="st-monitor">
+						<p class="st-monitor__title"><i class="fas fa-users"></i> Посетители</p>
+						<div *ngIf="totals; then thenAllVisits else elseAllVisits"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Мобильная версия -->
+	<div id="mobShotStats" class="st-row">
+		<div class="st-row__item st-half">
+			<div class="st-panel st-panelStatic">
+				<ng-container *ngTemplateOutlet="todayViewTpl"></ng-container>
+			</div>
+		</div>
+
+		<div class="st-row__item st-half">
+			<div class="st-panel st-panelStatic">
+				<ng-container *ngTemplateOutlet="todayVisitTpl"></ng-container>
+			</div>
+		</div>
+
+		<div class="st-row__item" style="padding: 0 5px; width: 100%;" *ngIf="expertMode">
+			<div class="st-panel st-panelStatic">
+				<ng-container *ngTemplateOutlet="depthTpl"></ng-container>
+			</div>
+		</div>
+	</div>
+
+	<!-- График -->
+	<!-- <div class="st-grafic"></div> -->
+
+	<label id="expertMode" class="checkbox">
+		<input type="checkbox" (change)="changeMode()" />
+		<div class="checkbox__text">Экспертный режим</div>
+	</label>
+
+</div>
+
+<!-- Today/period total views tpl -->
+<ng-template #todayViewTpl>
+	<div class="st-monitor">
+		<p class="st-monitor__title"><i class="fas fa-eye"></i> Просмотры</p>
+		<div *ngIf="todaytotals; then thenTodayViews else elseTodayViews"></div>
+	</div>
+	<ng-template #thenTodayViews>
+		<span class="st-monitor__value st-success">{{todaytotals.view}}</span>
+	</ng-template>
+	<ng-template #elseTodayViews>
+		<span class="st-monitor__value st-success">0</span>
+	</ng-template>
+</ng-template>
+
+<!-- Today/period total visits tpl -->
+<ng-template #todayVisitTpl>
+	<div class="st-monitor">
+		<p class="st-monitor__title"><i class="fas fa-users"></i> Посетители</p>
+		<div *ngIf="todaytotals; then thenTodayVisits else elseTodayVisits"></div>
+	</div>
+	<ng-template #thenTodayVisits>
+		<span class="st-monitor__value st-success">{{todaytotals.visit}}</span>
+	</ng-template>
+	<ng-template #elseTodayVisits>
+		<span class="st-monitor__value st-success">0</span>
+	</ng-template>
+</ng-template>
+
+<!-- Depth tpl -->
+<ng-template #depthTpl>
+	<div class="st-monitor" *ngIf="expertMode">
+		<p class="st-monitor__title"><i class="fas fa-long-arrow-alt-down"></i> Глубина просмотров</p>
+		<span id="depth" class="st-monitor__value">{{ depth }}</span>
+	</div>
+</ng-template>
+
+<!-- Total views for all time -->
+<ng-template #thenAllViews>
+	<span id="totalviews" class="st-monitor__value">{{ totals.view }}</span>
+</ng-template>
+<ng-template #elseAllViews>
+	<span id="totalviews" class="st-monitor__value">0</span>
+</ng-template>
+
+<!-- Total vists for all time -->
+<ng-template #thenAllVisits>
+	<span id="totalvisitors" class="st-monitor__value">{{ totals.visit }}</span>
+</ng-template>
+<ng-template #elseAllVisits>
+	<span id="totalvisitors" class="st-monitor__value">0</span>
+</ng-template>
+
+
+<!-- Graphics -->
+<app-sources *ngIf="expertMode"></app-sources>

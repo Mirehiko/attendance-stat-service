@@ -1,0 +1,93 @@
+.checkBox {
+  height: 30px;
+  padding: 0 10px 0 40px;
+  color: #fff;
+
+  .checkBox__title {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+
+    &::before {
+      height: 20px;
+      width: 20px;
+      margin: 0;
+      border: 1px solid #ddd;
+      vertical-align: middle;
+      border-radius: 6px;
+      box-sizing: border-box;
+      text-align: center;
+      line-height: 20px;
+      font-size: 24px;
+      overflow: hidden;
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: -30px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #ffffff24;
+  }
+
+  .checkBox__title:hover::before {
+    background-color: #ffffff52;
+  }
+
+  input {
+    display: none;
+  }
+
+  input:checked+.checkBox__title:before {
+    position: absolute;
+    content: "✔";
+    text-align: center;
+    color: #fff;
+  }
+
+  &.checkBox-active {
+    background-color: #1a9c96;
+  }
+}
+
+.checkBox-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkBox-author {
+  text-transform: capitalize;
+}
+
+#authorslist_panel {
+  float: left;
+  background: #175167;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 10px;
+
+  @media screen and (min-width: 0) {
+    width: 100%;
+    padding: 15px 0 10px;
+  }
+
+  @media screen and (min-width: 768px) {
+    border-right: 1px solid #f7a100;
+    padding: 15px 0;
+    width: 300px;
+  }
+}
+
+.item-co {
+  @media screen and (min-width: 0) {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    display: initial;
+  }
+}

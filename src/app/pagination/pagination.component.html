@@ -1,0 +1,19 @@
+<nav class="pagination" *ngIf="pageInfo.prev || pageInfo.next">
+	<div class="pagination__item" *ngIf="pageInfo.prev">
+		<button class="paginationContent" (click)="setPage(pageInfo.prev)" title="Предыдущая страница">
+			<!-- <i class=" fas fa-angle-left"></i> -->
+			<!-- prev -->
+			<i class="fas fa-long-arrow-alt-left"></i>
+		</button>
+	</div>
+	<div class="pagination__item" *ngIf="pageInfo.page">
+		<span class="paginationContent paginationContent-page">{{ pageInfo.page }}</span>
+	</div>
+	<div class="pagination__item" *ngIf="pageInfo.next">
+		<button class="paginationContent" (click)="setPage(pageInfo.next)" title="Следущая страница">
+			<!-- <i class=" fas fa-angle-right"></i> -->
+			<!-- next -->
+			<i class="fas fa-long-arrow-alt-right"></i>
+		</button>
+	</div>
+</nav>

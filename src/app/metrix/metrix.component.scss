@@ -1,0 +1,53 @@
+.metrixList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.metrix {
+  padding: 0 5px;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 0) {
+    width: 100%;
+
+    &.desc {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 475px) {
+    width: auto;
+
+    &.desc {
+      display: initial;
+    }
+  }
+}
+
+.metrixHead {
+  font-weight: bold;
+  border-bottom: 1px solid #dadadab0;
+  color: #4594c5;
+  min-height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  margin: 0 -5px;
+  padding: 0 5px;
+  background-color: #f4f7f8;
+}
+
+.metrixBody {
+  padding: 0 10px;
+
+  * {
+    padding: 5px 0;
+  }
+}
+
+.metrixIcon {
+  padding: 0 5px 0 0;
+
+  @media screen and (min-width: 0) {
+    display: none;
+  }
+}
